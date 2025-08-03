@@ -302,6 +302,13 @@ const quickActions = computed(() => {
   } else {
     return [
       {
+        name: 'Emergency SOS',
+        description: 'Urgent gas delivery service',
+        href: '/emergency',
+        icon: 'ExclamationTriangleIcon',
+        iconBackground: 'bg-red-500'
+      },
+      {
         name: 'Place Order',
         description: 'Order gas from verified suppliers',
         href: '/orders/new',

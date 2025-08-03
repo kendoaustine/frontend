@@ -91,20 +91,25 @@
               {{ pageTitle }}
             </h1>
 
-            <!-- User menu -->
-            <div class="relative">
-              <button
-                type="button"
-                class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                @click="userMenuOpen = !userMenuOpen"
-              >
-                <span class="sr-only">Open user menu</span>
-                <div class="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
-                  <span class="text-sm font-medium text-gray-700">
-                    {{ user?.firstName?.charAt(0) }}{{ user?.lastName?.charAt(0) }}
-                  </span>
-                </div>
-              </button>
+            <!-- Header Actions -->
+            <div class="flex items-center space-x-4">
+              <!-- Notification Center -->
+              <NotificationCenter />
+
+              <!-- User menu -->
+              <div class="relative">
+                <button
+                  type="button"
+                  class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  @click="userMenuOpen = !userMenuOpen"
+                >
+                  <span class="sr-only">Open user menu</span>
+                  <div class="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
+                    <span class="text-sm font-medium text-gray-700">
+                      {{ user?.firstName?.charAt(0) }}{{ user?.lastName?.charAt(0) }}
+                    </span>
+                  </div>
+                </button>
 
               <!-- User dropdown -->
               <div

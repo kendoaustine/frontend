@@ -95,11 +95,40 @@ export interface AuthTokens {
   accessToken: string
   refreshToken: string
   expiresIn: number
+  tokenType?: string
 }
 
 export interface AuthResponse {
   user: User
   tokens: AuthTokens
+}
+
+// Payment types
+export type PaymentMethod = 'card' | 'bank_transfer' | 'ussd' | 'mobile_money' | 'cash_on_delivery'
+
+export interface PaymentData {
+  id: string
+  reference: string
+  amount: number
+  currency: string
+  status: 'pending' | 'processing' | 'success' | 'failed' | 'cancelled' | 'refunded'
+  paymentMethod: PaymentMethod
+  customerEmail: string
+  customerPhone: string
+  orderId?: string
+  metadata?: any
+  createdAt: string
+  updatedAt: string
+}
+
+export interface PaymentResult {
+  success: boolean
+  reference: string
+  amount: number
+  status: string
+  paymentMethod: PaymentMethod
+  data?: any
+  error?: string
 }
 
 // Order types

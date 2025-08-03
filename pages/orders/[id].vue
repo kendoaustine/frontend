@@ -102,6 +102,11 @@
           </div>
         </div>
       </div>
+
+      <!-- Real-time Tracking -->
+      <div v-if="order.status !== 'delivered' && order.status !== 'cancelled'" class="mb-6">
+        <RealTimeTracker :order-id="orderId" />
+      </div>
     </div>
   </div>
 </template>

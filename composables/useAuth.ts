@@ -10,11 +10,20 @@ export const useAuth = () => {
 
   // Initialize auth state from cookies
   const initAuth = () => {
+    console.log('🔄 initAuth called')
     const userData = useCookie<User>('user-data')
     const authToken = useCookie('auth-token')
 
+    console.log('🍪 Cookie values:', {
+      userData: userData.value,
+      authToken: authToken.value ? 'present' : 'missing'
+    })
+
     if (userData.value && authToken.value) {
       user.value = userData.value
+      console.log('✅ Auth state restored from cookies:', user.value)
+    } else {
+      console.log('❌ No valid auth data in cookies')
     }
   }
 

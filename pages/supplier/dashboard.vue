@@ -39,6 +39,11 @@
       </div>
     </div>
 
+    <!-- Real-time Analytics Dashboard -->
+    <div v-if="isVerified" class="mb-8">
+      <RealTimeDashboard />
+    </div>
+
     <!-- Quick Stats -->
     <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 mb-8">
       <div class="bg-white overflow-hidden shadow rounded-lg">

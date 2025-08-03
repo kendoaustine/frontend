@@ -172,12 +172,17 @@ const handleSubmit = async () => {
   isLoading.value = true
 
   try {
+    console.log('🔐 Starting login process...')
     const result = await login({
       identifier: form.identifier,
       password: form.password
     })
 
+    console.log('✅ Login result:', result)
+
     if (result.success) {
+      console.log('🎉 Login successful, user:', result.user)
+
       // Show success message
       const toast = useNuxtApp().$toast
       if (toast) {
@@ -187,12 +192,24 @@ const handleSubmit = async () => {
       // Small delay to ensure state is updated
       await new Promise(resolve => setTimeout(resolve, 100))
 
+      // Check auth state before redirect
+      const { isAuthenticated, user } = useAuth()
+      console.log('🔍 Auth state before redirect:', {
+        isAuthenticated: isAuthenticated.value,
+        user: user.value
+      })
+
       // Redirect to dashboard or intended page
       const redirect = useRoute().query.redirect as string
-      await navigateTo(redirect || '/dashboard')
+      const targetUrl = redirect || '/dashboard'
+      console.log('🚀 Redirecting to:', targetUrl)
+      await navigateTo(targetUrl)
+    } else {
+      console.log('❌ Login failed: result.success is false')
+      errorMessage.value = 'Login failed. Please try again.'
     }
   } catch (error: any) {
-    console.error('Login error:', error)
+    console.error('❌ Login error:', error)
     errorMessage.value = error.message || 'Login failed. Please try again.'
   } finally {
     isLoading.value = false
